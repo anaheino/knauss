@@ -10,8 +10,8 @@ export class RogerBio extends React.Component {
     }
 
     createListItems(items) {
-        return items.map(item => {
-            return (<div>
+        return items.map((item, i) => {
+            return (<div key={i}>
                 <h4>{item.title}</h4>
                 <p>{item.details.text}</p>
                 <span>{item.details.additional}</span>

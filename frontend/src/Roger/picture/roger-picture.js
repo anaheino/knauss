@@ -11,10 +11,10 @@ export class RogerPicture extends React.Component {
     }
 
     generatePictureElements(pictures) {
-        return pictures.map((pic) => {
+        return pictures.map((pic, i) => {
             return (
                 <div>
-                    <img src={pic.picture} width="200" height="250"/>
+                    <img key={i} src={pic.picture} width="200" height="250"/>
                     <h6>{pic.title}</h6>
                 </div>
                 );

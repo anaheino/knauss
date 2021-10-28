@@ -11,9 +11,9 @@ export class RogerWorkHistory extends React.Component {
 
 
     formatWorkHistory(workHistory) {
-        const workHistories = workHistory.map(work => {
+        const workHistories = workHistory.map((work, i) => {
             return (
-                <li>
+                <li key={i}>
                     <h3>{work.title}</h3>
                     <span>{work.text}</span>
                     <p>
