@@ -6,52 +6,34 @@ import {RogerWorkHistory} from "./workHistory/roger-work-history";
 
 export class Roger extends React.Component {
 
-    rogerKnauss = {
-        header: {
-            name: 'Knauss, Roger',
-            title: 'Mies'
-        },
-        pictures: [
-            {
-                title: 'Knauss at his best',
-                picture: './knauss.png'
-            }
-        ],
-        bio: {
-                title: 'The man, The legend',
-                items: [
-                    {
-                        'title': 'Man of Equal Opportunities',
-                        'details': {
-                            'text': 'Ever since he was born, R. Knauss has been a loyal supporter of women\'s rights.',
-                            'additional': '* Student times not included'
-                        }
-                    },
-                    {
-                        'title': 'Man of mysteries',
-                        'details': {
-                            'text': 'No one knows exactly how long Roger has been influencing this world. Some say he\'s as ancient as the mountains themselves.',
-                            'additional': 'But it might be sometime between 1900 and 2020'
-                        }
-                    }
-               ]
-            },
-        workHistory: [
-            {
-                'title': 'Astronaut',
-                'text': 'Employed at NASA',
-                'yearsActive': '1961-1972'
-            }
-        ]
-    };
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    componentWillMount() {
+        this.fetchKnauss();
+    }
+
+    fetchKnauss() {
+        fetch('http://localhost:5000')
+            .then(response =>  response.json())
+            .then(data => this.setState({ rogerKnauss: data }))
+            .catch((error) => console.log(error));
+    }
 
     render() {
         return (
             <div>
-                <RogerHeader info = {this.rogerKnauss.header} />
-                <RogerPicture pictures = {this.rogerKnauss.pictures}/>
-                <RogerBio bio = {this.rogerKnauss.bio} />
-                <RogerWorkHistory workHistory = {this.rogerKnauss.workHistory}/>
+                {this.state.rogerKnauss ?
+                    <div>
+                        <RogerHeader info = {this.state.rogerKnauss.header} />
+                        <RogerPicture pictures = {this.state.rogerKnauss.pictures}/>
+                        <RogerBio bio = {this.state.rogerKnauss.bio} />
+                        <RogerWorkHistory workHistory = {this.state.rogerKnauss.workHistory}/>
+                    </div>
+                     : ''}
+
             </div>
         );
     }
