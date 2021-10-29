@@ -15,7 +15,7 @@ def knauss():
             'pictures': [
                 {
                     'title': 'Knauss at his best',
-                    'picture': './knauss.png'
+                    'url': './knauss.png'
                 }
             ],
             'bio': {
